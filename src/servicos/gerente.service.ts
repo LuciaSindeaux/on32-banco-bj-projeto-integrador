@@ -32,7 +32,7 @@ export class GerenteService {
       if (cliente) {
         let novaConta;
         if (tipoConta === TipoConta.CORRENTE) {
-          novaConta = new ContaCorrente(Math.random().toString());
+          novaConta = new ContaCorrente(Math.random().toString(), 0);
         } else if (tipoConta === TipoConta.POUPANCA) {
           novaConta = new ContaPoupanca(Math.random().toString(), 0);
         }
@@ -59,7 +59,7 @@ export class GerenteService {
           !(conta instanceof ContaCorrente)
         ) {
           cliente.contas = cliente.contas.filter((c) => c.id !== contaId);
-          const novaConta = new ContaCorrente(contaId);
+          const novaConta = new ContaCorrente(contaId, 100);
           cliente.contas.push(novaConta);
         } else if (
           novoTipo === TipoConta.POUPANCA &&

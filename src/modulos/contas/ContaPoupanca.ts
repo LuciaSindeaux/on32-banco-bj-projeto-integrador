@@ -1,42 +1,41 @@
-import { ContaBancaria } from './conta';
+import { ContaBancaria } from './IConta';
 import { TipoConta } from '../../enums/tipo-conta-enum';
 
-export class ContaPoupanca extends ContaBancaria {
-  private taxaJuros: number;
+export class ContaPoupanca implements ContaBancaria {
+  id: string;
+  tipoConta: TipoConta;
+  saldo: number;
+  taxaJuros: number;
 
   constructor(id: string, taxaJuros: number) {
-    super(id, TipoConta.POUPANCA);
+    this.id = id;
+    this.tipoConta = TipoConta.POUPANCA;
+    this.saldo = 0;
     this.taxaJuros = taxaJuros;
   }
 
-  get juros(): number {
-    return this.taxaJuros;
-  }
-
   depositar(valor: number): void {
-    if (valor > 0) {
-      this.saldo += valor;
-    }
+    this.saldo += valor;
   }
 
   sacar(valor: number): void {
-    if (valor > 0 && valor <= this.saldo) {
+    if (valor <= this.saldo) {
       this.saldo -= valor;
+    } else {
+      throw new Error('Saldo insuficiente para saque.');
     }
   }
 
   transferir(valor: number, contaDestino: ContaBancaria): void {
-    if (valor > 0 && valor <= this.saldo) {
-      this.sacar(valor);
+    if (valor <= this.saldo) {
+      this.saldo -= valor;
       contaDestino.depositar(valor);
+    } else {
+      throw new Error('Saldo insuficiente para transferência.');
     }
   }
 
   verificarSaldo(): number {
     return this.saldo;
-  }
-
-  aplicarJuros(): void {
-    this.saldo += this.saldo * this.taxaJuros;
   }
 }

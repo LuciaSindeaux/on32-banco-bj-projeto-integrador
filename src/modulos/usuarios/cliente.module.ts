@@ -1,22 +1,22 @@
-import { Pessoa } from '../usuarios/Pessoa';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { IPessoa } from '../usuarios/IPessoa';
 import { Gerente } from '../usuarios/gerente.module';
-import { ContaBancaria } from '../contas/Conta';
+import { ContaBancaria } from '../contas/IConta';
 import { ContaCorrente } from '../contas/ContaCorrente';
 import { ContaPoupanca } from '../contas/ContaPoupanca';
-import { TipoConta } from 'src/enums/tipo-conta-enum';
+import { TipoConta } from '../../enums/tipo-conta-enum';
 
-export class Cliente extends Pessoa {
+export class Cliente implements IPessoa {
   contas: ContaBancaria[] = [];
   gerente: Gerente;
 
   constructor(
-    nomeCompleto: string,
-    id: string,
+    public nomeCompleto: string,
+    public id: string,
     gerente: Gerente,
-    endereco?: string,
-    telefone?: string,
+    public endereco?: string,
+    public telefone?: string,
   ) {
-    super(nomeCompleto, id, endereco, telefone);
     this.gerente = gerente;
   }
 
@@ -32,7 +32,7 @@ export class Cliente extends Pessoa {
     const index = this.contas.indexOf(conta);
     if (index !== -1) {
       if (novoTipo === TipoConta.CORRENTE) {
-        this.contas[index] = new ContaCorrente(conta.id);
+        this.contas[index] = new ContaCorrente(conta.id, 100);
       } else if (novoTipo === TipoConta.POUPANCA) {
         this.contas[index] = new ContaPoupanca(conta.id, 0.01);
       }
