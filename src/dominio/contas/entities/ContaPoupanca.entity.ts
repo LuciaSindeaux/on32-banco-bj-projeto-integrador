@@ -1,18 +1,11 @@
-import { ContaBancaria } from './IConta';
-import { TipoConta } from '../../enums/tipo-conta-enum';
+import { ChildEntity, Column } from 'typeorm';
+import { ContaBancaria } from './Conta.entity';
 
-export class ContaPoupanca implements ContaBancaria {
-  id: string;
-  tipoConta: TipoConta;
-  saldo: number;
+@ChildEntity()
+export class ContaPoupanca extends ContaBancaria {
+  @Column()
   taxaJuros: number;
-
-  constructor(id: string, taxaJuros: number) {
-    this.id = id;
-    this.tipoConta = TipoConta.POUPANCA;
-    this.saldo = 0;
-    this.taxaJuros = taxaJuros;
-  }
+  saldo: number;
 
   depositar(valor: number): void {
     this.saldo += valor;
