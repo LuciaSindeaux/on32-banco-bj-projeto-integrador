@@ -7,10 +7,10 @@ import {
   Res,
   HttpStatus,
 } from '@nestjs/common';
-import { GerenteService } from '../servicos/gerente.service';
-import { Gerente } from '../modulos/usuarios/gerente.module';
-import { Cliente } from '../modulos/usuarios/cliente.module';
-import { TipoConta } from '../enums/tipo-conta-enum';
+import { GerenteService } from '../../dominio/servicos/gerente.service';
+import { Gerente } from '../../dominio/users/gerente.module';
+import { Cliente } from '../../dominio/users/cliente.module';
+import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
 import { Response } from 'express';
 
 @Controller('gerentes')

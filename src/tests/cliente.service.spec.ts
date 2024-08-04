@@ -1,9 +1,9 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../app.module';
+import { AppModule } from '../aplicação/app.module';
 import * as supertest from 'supertest';
-import { Cliente } from 'src/modulos/usuarios/cliente.module';
-import { TipoConta } from '../enums/tipo-conta-enum';
+import { Cliente } from 'src/dominio/usuarios/cliente.module';
+import { TipoConta } from '../dominio/enums/tipo-conta-enum';
 
 describe('Criar cliente', () => {
   let app: INestApplication;
