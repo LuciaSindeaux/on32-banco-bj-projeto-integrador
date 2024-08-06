@@ -19,6 +19,8 @@ lerna-debug.log*
 /coverage
 /.nyc_output
 
+
+
 # IDEs and editors
 /.idea
 .project
@@ -41,6 +43,10 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 .env.local
+
+#BD
+/ormconfig.json
+
 
 # temp directory
 .temp

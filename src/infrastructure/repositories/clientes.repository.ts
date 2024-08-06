@@ -4,18 +4,29 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class ClienteRepository   {
- 
+export class ClienteRepository {
     constructor(
-        @InjectRepository(Cliente)
-        private readonly clienteRepository: Repository<Cliente>,
+      @InjectRepository(Cliente)
+      private readonly clienteRepository: Repository<Cliente>,
     ) {}
 
     async save(cliente: Cliente): Promise<Cliente> {
         return await this.clienteRepository.save(cliente);
     }
 
-    async getClienteById(id: string): Promise<Cliente> {
-        return await this.clienteRepository.findOne({where: {id}});
+    async getClientById(id: string): Promise<Cliente> {
+        return await this.clienteRepository.findOne({ where: { id } });
+    }
+
+    async findClientById(id: string): Promise<Cliente> {
+        return await this.clienteRepository.findOne({ where: { id } });
+    }
+
+    async deleteClient(id: string): Promise<void> {
+        await this.clienteRepository.delete(id);
+    }
+
+    async findAllClients(): Promise<Cliente[]> {
+        return await this.clienteRepository.find();
     }
 }

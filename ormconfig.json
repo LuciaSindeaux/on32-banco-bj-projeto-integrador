@@ -1,0 +1,14 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "140694",
+    "database": "banco",
+    "entities": [
+            "src/domain/gerentes/entities/gerente.entity.ts",
+            "src/domain/clientes/entities/cliente.entity.ts",
+            "src/domain/contas/entities/conta.entity.ts"        
+        ],
+    "synchronize": true
+}
