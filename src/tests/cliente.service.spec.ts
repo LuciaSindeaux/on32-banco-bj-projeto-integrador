@@ -1,9 +1,9 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../aplicação/app.module';
+import { AppModule } from '../app.module';
 import * as supertest from 'supertest';
-import { Cliente } from 'src/dominio/usuarios/cliente.module';
-import { TipoConta } from '../dominio/enums/tipo-conta-enum';
+import { Cliente } from 'src/domain/clientes/entities/cliente.entity';
+import { TipoConta } from '../domain/enums/tipo-conta-enum';
 
 describe('Criar cliente', () => {
   let app: INestApplication;
@@ -17,11 +17,14 @@ describe('Criar cliente', () => {
     await app.init();
   });
 
+  afterAll(async () => {
+    await app.close();
+  });
+
   test('Deve criar um cliente com sucesso e adicionar um tipo de conta poupança e associar um gerente ele', async () => {
     const nomeCompleto = 'Lais';
     const endereco = 'Rua paraibuna, 123';
     const telefone = '429858464';
-    const gerente = 'João';
     const tipoConta = TipoConta.POUPANCA;
 
     const response = await supertest(app.getHttpServer())
@@ -30,18 +33,17 @@ describe('Criar cliente', () => {
         nomeCompleto,
         endereco,
         telefone,
-        gerente,
         tipoConta,
       })
       .expect(201);
 
     const body = response.body;
     console.log(body);
+    expect(body).toHaveProperty('id');
     expect(body.nomeCompleto).toBe(nomeCompleto);
     expect(body.endereco).toBe(endereco);
     expect(body.telefone).toBe(telefone);
-    expect(body.gerente.nomeCompleto).toBe(gerente);
-    expect(body.contas[0].tipoConta).toBe(tipoConta);
+    expect(body.contas[0].tipoConta).toBe(TipoConta.POUPANCA);
   });
 
   test('Deve retornar uma lista de clientes', async () => {
@@ -49,15 +51,27 @@ describe('Criar cliente', () => {
       nomeCompleto: 'Teste Cliente 1',
       endereco: 'Endereço Teste 1',
       telefone: 'Telefone Teste 1',
-      gerente: 'Gerente Teste 1',
-      tipoConta: TipoConta.CORRENTE,
+      gerente: {
+        nomeCompleto: 'Gerente Teste 1',
+      },
+      contas: [
+        {
+          tipoConta: TipoConta.CORRENTE,
+        },
+      ],
     };
     const cliente2 = {
       nomeCompleto: 'Teste Cliente 2',
       endereco: 'Endereço Teste 2',
       telefone: 'Telefone Teste 2',
-      gerente: 'Gerente Teste 2',
-      tipoConta: TipoConta.POUPANCA,
+      gerente: {
+        nomeCompleto: 'Gerente Teste 2',
+      },
+      contas: [
+        {
+          tipoConta: TipoConta.POUPANCA,
+        },
+      ],
     };
     await supertest(app.getHttpServer())
       .post('/clientes')
@@ -80,7 +94,7 @@ describe('Criar cliente', () => {
       expect(cliente).toHaveProperty('telefone');
       expect(cliente).toHaveProperty('contas');
       expect(cliente.contas[0]).toHaveProperty('tipoConta');
-      expect(cliente.gerente).toHaveProperty('nomeCompleto');
+      expect(cliente.gerenteId).toHaveProperty('nomeCompleto');
     });
   });
 });
