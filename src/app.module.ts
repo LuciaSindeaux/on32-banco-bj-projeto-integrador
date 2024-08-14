@@ -6,19 +6,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cliente } from './domain/clientes/entities/cliente.entity';
 import { Gerente } from './domain/gerentes/entities/gerente.entity';
 import { ContaBancaria } from './domain/contas/entities/conta.entity';
-import { ClienteService } from './domain/clientes/services/cliente.service';
-import { ClienteRepository } from './infrastructure/repositories/clientes.repository';
+import { Transacoes } from './domain/transacoes/entities/transacoes.entity';
+
+require('dotenv').config();
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '140694',
-      database: 'banco',
-      entities: [Gerente, Cliente, ContaBancaria],
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: String (process.env.DB_PASSWORD),
+      database: process.env.DB_DATABASE,
+      entities: [Gerente, Cliente, ContaBancaria, Transacoes],
       synchronize: true,
     }),
     ClienteModule,

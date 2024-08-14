@@ -3,10 +3,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import { Cliente } from '../../clientes/entities/cliente.entity';
 import { TipoConta } from '../../enums/tipo-conta-enum';
-
+import { Transacao } from '../../transações/transacao.entity';
 
 @Entity()
 export class ContaBancaria {
@@ -27,4 +28,7 @@ export class ContaBancaria {
 
   @ManyToOne(() => Cliente, (cliente) => cliente.contas)
   cliente: Cliente;
+
+  @OneToMany(() => Transacao, (transacao) => transacao.conta)
+  transacoes: Transacao[];
 }

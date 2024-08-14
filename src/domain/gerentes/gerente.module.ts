@@ -4,11 +4,12 @@ import { GerenteService } from './services/gerente.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cliente } from '../clientes/entities/cliente.entity';
 import { Gerente } from './entities/gerente.entity';
+import { GerenteRepository } from 'src/infrastructure/repositories/gerentes.repository';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Gerente, Cliente])],
-    providers: [GerenteService],
+    providers: [GerenteService, GerenteRepository],
     controllers: [GerenteController],
-    exports: [GerenteService],
+    exports: [GerenteService, GerenteRepository],
 })
 export class GerenteModule {}

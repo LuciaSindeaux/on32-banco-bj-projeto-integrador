@@ -17,4 +17,18 @@ export class Gerente {
 
   @OneToMany(() => Cliente, (cliente) => cliente.gerenteId)
   clientes: Cliente[];
+
+  adicionarCliente(cliente: Cliente): void {
+    this.clientes.push(cliente);
+    cliente.gerenteId = this.id;
+  }
+
+  removerCliente(clienteId: string): void {
+    const clienteIndex = this.clientes.findIndex(
+      (cliente) => cliente.id === clienteId,
+    );
+    if (clienteIndex !== -1) {
+      this.clientes.splice(clienteIndex, 1);
+    }
+  }
 }
