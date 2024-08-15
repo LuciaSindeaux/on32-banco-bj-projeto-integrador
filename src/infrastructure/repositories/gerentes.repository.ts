@@ -1,5 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { Gerente } from '../../domain/gerentes/entities/gerente.entity';
+<<<<<<< HEAD
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Cliente } from 'src/domain/clientes/entities/cliente.entity';
@@ -50,3 +51,8 @@ export class GerenteRepository {
     return null;
   }
 }
+=======
+
+@EntityRepository(Gerente)
+export class GerenteRepository extends Repository<Gerente> {}
+>>>>>>> 000036ab03e5d924c741e7ae8a3b90844ec00a21

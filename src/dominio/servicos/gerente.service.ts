@@ -113,6 +113,6 @@ export class GerenteService {
   }
 
   async encontrarGerentePorId(gerenteId: string): Promise<Gerente> {
-    return this.gerenteRepository.findOne(gerenteId);
+    return await this.gerenteRepository.findOne({ where: { id: gerenteId }, relations: ['clientes'] });
   }
 }
