@@ -1,4 +1,4 @@
-import { InjectRepository } from '@nestjs/typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 import { Gerente } from '../../domain/gerentes/entities/gerente.entity';
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
