@@ -1,9 +1,8 @@
-import { EntityRepository, Repository } from 'typeorm';
-import { Gerente } from '../../domain/gerentes/entities/gerente.entity';
-<<<<<<< HEAD
+import { Repository} from 'typeorm';
+import { Gerente } from '../../dominio/gerentes/entities/gerente.entity';
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { Cliente } from 'src/domain/clientes/entities/cliente.entity';
+import { Cliente } from 'src/dominio/clientes/entities/cliente.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class GerenteRepository {
@@ -12,8 +11,8 @@ export class GerenteRepository {
     private readonly GerenteRepository: Repository<Gerente>,
   ) {}
 
-  async findAllGerentes(p0: { relations: string[] }): Promise<Gerente[]> {
-    return await this.GerenteRepository.find();
+  async findAll(p0: { relations: string[] }): Promise<Gerente[]> {
+    return await this.GerenteRepository.find(p0);
   }
 
   async save(gerente: Gerente): Promise<Gerente> {
@@ -22,6 +21,7 @@ export class GerenteRepository {
   async findOne(id: string): Promise<Gerente> {
     return await this.GerenteRepository.findOne({ where: { id } });
   }
+
   async adicionarCliente(
     gerenteId: string,
     cliente: Cliente,
@@ -51,8 +51,3 @@ export class GerenteRepository {
     return null;
   }
 }
-=======
-
-@EntityRepository(Gerente)
-export class GerenteRepository extends Repository<Gerente> {}
->>>>>>> 000036ab03e5d924c741e7ae8a3b90844ec00a21

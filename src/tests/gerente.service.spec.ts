@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Gerente } from '../domain/gerentes/entities/gerente.entity';
-import { Cliente } from '../domain/clientes/entities/cliente.entity';
-import { GerenteRepository } from '../infrastructure/repositories/gerentes.repository';
+import { Gerente } from '../dominio/gerentes/entities/gerente.entity';
+import { Cliente } from '../dominio/clientes/entities/cliente.entity';
+import { GerenteRepository } from '../infraestrutura/repositories/gerentes.repository';
 import { AppModule } from '../app.module';
-import { GerenteModule } from '../domain/gerentes/gerente.module';
+import { GerenteModule } from '../dominio/gerentes/gerente.module';
 import { INestApplication } from '@nestjs/common';
 import supertest from 'supertest';
 

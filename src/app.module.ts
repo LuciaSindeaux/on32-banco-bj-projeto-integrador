@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ClienteModule } from './domain/clientes/cliente.module';
-import { GerenteModule } from './domain/gerentes/gerente.module';
-import { ContasModule } from './domain/contas/contas.module';
+import { ClienteModule } from './dominio/clientes/cliente.module';
+import { GerenteModule } from './dominio/gerentes/gerente.module';
+import { ContasModule } from './dominio/contas/contas.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Cliente } from './domain/clientes/entities/cliente.entity';
-import { Gerente } from './domain/gerentes/entities/gerente.entity';
-import { ContaBancaria } from './domain/contas/entities/conta.entity';
-import { Transacoes } from './domain/transacoes/entities/transacoes.entity';
+import { Cliente } from './dominio/clientes/entities/cliente.entity';
+import { Gerente } from './dominio/gerentes/entities/gerente.entity';
+import { ContaBancaria } from './dominio/contas/entities/conta.entity';
 
 require('dotenv').config();
 
@@ -19,7 +18,7 @@ require('dotenv').config();
       username: process.env.DB_USERNAME,
       password: String (process.env.DB_PASSWORD),
       database: process.env.DB_DATABASE,
-      entities: [Gerente, Cliente, ContaBancaria, Transacoes],
+      entities: [Gerente, Cliente, ContaBancaria],
       synchronize: true,
     }),
     ClienteModule,
