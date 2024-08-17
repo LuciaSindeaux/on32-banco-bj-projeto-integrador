@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cliente } from './dominio/clientes/entities/cliente.entity';
 import { Gerente } from './dominio/gerentes/entities/gerente.entity';
 import { ContaBancaria } from './dominio/contas/entities/conta.entity';
+import { Transacao } from './dominio/transacoes/entities/transacao.entity';
 
 require('dotenv').config();
 
@@ -18,7 +19,7 @@ require('dotenv').config();
       username: process.env.DB_USERNAME,
       password: String (process.env.DB_PASSWORD),
       database: process.env.DB_DATABASE,
-      entities: [Gerente, Cliente, ContaBancaria],
+      entities: [Gerente, Cliente, ContaBancaria, Transacao],
       synchronize: true,
     }),
     ClienteModule,

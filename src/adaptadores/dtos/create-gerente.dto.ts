@@ -1,4 +1,4 @@
-import { Cliente } from '../../clientes/entities/cliente.entity'; 
+import { Cliente } from '../../dominio/clientes/entities/cliente.entity'; 
 
 export class CreateGerenteDto {
     nomeCompleto: string;

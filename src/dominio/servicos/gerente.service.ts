@@ -4,12 +4,14 @@ import { Cliente } from '../clientes/entities/cliente.entity';
 import { ContaCorrente } from '../contas/entities/ContaCorrente.entity';
 import { ContaPoupanca } from '../contas/entities/contaPoupanca.entity';
 import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
-import { CreateGerenteDto } from '../gerentes/dto/create-gerente.dto';
-import { GerenteRepository } from '../../infraestrutura/repositories/gerentes.repository';
+import { CreateGerenteDto } from '../../adaptadores/dtos/create-gerente.dto';
+import { GerenteRepository} from '../../infraestrutura/repositories/gerentes.repository';
 import { ContasRepository } from '../../infraestrutura/repositories/contas.repository';
+
 
 @Injectable()
 export class GerenteService {
+ 
   constructor(
     private readonly gerenteRepository: GerenteRepository,
     private readonly contaRepository: ContasRepository,

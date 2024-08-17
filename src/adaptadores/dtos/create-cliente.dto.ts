@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, isNotEmpty } from 'class-validator';
-import { TipoConta } from '../../../dominio/enums/tipo-conta-enum';
+import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
 
 export class CreateClienteDto {
 
@@ -13,7 +13,7 @@ export class CreateClienteDto {
   telefone: string;
 
   @IsString()
-  gerente: string;
+  gerenteId: string;
 
   tipoConta: TipoConta;
 }

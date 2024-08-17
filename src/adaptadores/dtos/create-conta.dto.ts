@@ -1,4 +1,4 @@
-import { TipoConta } from '../../enums/tipo-conta-enum';
+import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
 
 export class CreateContaDto {
   clienteId: string;

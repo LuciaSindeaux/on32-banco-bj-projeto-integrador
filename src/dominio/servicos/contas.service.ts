@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, Repository } from 'typeorm';
 import { ContaBancaria } from '../contas/entities/Conta.entity';
-import { CreateContaDto } from '../contas/dto/create-conta.dto';
-import { UpdateContaDto } from '../contas/dto/update-conta.dto';
+import { CreateContaDto } from '../../adaptadores/dtos/create-conta.dto';
+import { UpdateContaDto } from '../../adaptadores/dtos/update-conta.dto';
 
 @Injectable()
 export class ContasService {

@@ -6,12 +6,16 @@ import { ContaBancaria } from './entities/Conta.entity';
 import { ContaCorrente } from './entities/ContaCorrente.entity';
 import { ContaPoupanca } from './entities/ContaPoupanca.entity';
 import { Cliente } from '../clientes/entities/cliente.entity';
+import { ContasRepository } from 'src/infraestrutura/repositories/contas.repository';
+import { TransacoesModule } from '../transacoes/transacao.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([ContaBancaria, ContaCorrente, ContaPoupanca, Cliente]),
+    TransacoesModule,
   ],
   controllers: [ContasController],
-  providers: [ContasService],
+  providers: [ContasService, ContasRepository],
+  exports: [ContasRepository]
 })
 export class ContasModule {}

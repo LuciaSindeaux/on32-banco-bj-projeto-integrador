@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Cliente } from '../clientes/entities/cliente.entity';
-import { CreateClienteDto } from '../clientes/dto/create-cliente.dto';
-import { UpdateClienteDto } from '../clientes/dto/update-cliente.dto';
+import { CreateClienteDto } from '../../adaptadores/dtos/create-cliente.dto';
+import { UpdateClienteDto } from '../../adaptadores/dtos/update-cliente.dto';
 import { ClienteRepository } from '../../infraestrutura/repositories/clientes.repository';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class ClienteService {
         cliente.nomeCompleto = createClienteDto.nomeCompleto;
         cliente.endereco = createClienteDto.endereco;
         cliente.telefone = createClienteDto.telefone;
-        cliente.gerenteId = createClienteDto.gerente;
+        cliente.gerenteId = createClienteDto.gerenteId;
         cliente.contas = [];
 
         return await this.clienteRepository.save(cliente);

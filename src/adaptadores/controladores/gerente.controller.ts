@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param, Res, HttpStatus } from '@nestjs/common';
 import { GerenteService } from '../../dominio/servicos/gerente.service';
-import { CreateGerenteDto } from '../../dominio/gerentes/dto/create-gerente.dto';
+import { CreateGerenteDto } from '../dtos/create-gerente.dto';
 import { Response } from 'express';
 import { Cliente } from '../../dominio/clientes/entities/cliente.entity';
 import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
@@ -125,13 +125,14 @@ export class GerenteController {
 
   @Patch(':clienteId/mudar-tipo-conta/:contaId')
   async mudarTipoConta(
+    @Param('gerenteId') gerenteId: string,
     @Param('clienteId') clienteId: string,
     @Param('contaId') contaId: string,
     @Body() { novoTipo }: { novoTipo: TipoConta },
     @Res() res: Response,
   ) {
     try {
-      await this.gerenteService.mudarTipoConta(clienteId, contaId, novoTipo);
+      await this.gerenteService.mudarTipoConta(gerenteId, clienteId, contaId, novoTipo);
       res.status(HttpStatus.OK).json({ message: 'Tipo de conta alterado com sucesso' });
     } catch (error) {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({

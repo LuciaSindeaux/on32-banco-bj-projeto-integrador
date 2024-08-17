@@ -1,20 +1,20 @@
 import { Repository } from 'typeorm';
-import { Transacoes } from '../../dominio/transacoes/entities/transacoes.entity';
+import { Transacao } from 'src/dominio/transacoes/entities/transacao.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class TransacoesRepository {
+export class TransacaoRepository {
   constructor(
-    @InjectRepository(Transacoes)
-    private readonly TransacoesRepository: Repository<Transacoes>,
+    @InjectRepository(Transacao)
+    private readonly TransacaoRepository: Repository<Transacao>,
   ) {}
 
-  async createTransacao(transacao: Transacoes): Promise<Transacoes> {
-    return await this.TransacoesRepository.save(transacao);
+  async createTransacao(transacao: Transacao): Promise<Transacao> {
+    return await this.TransacaoRepository.save(transacao);
   }
 
   async deleteTransacao(id: number): Promise<void> {
-    await this.TransacoesRepository.delete(id);
+    await this.TransacaoRepository.delete(id);
   }
 }
