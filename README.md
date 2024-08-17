@@ -1,73 +1,39 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Projeto Banco Comunitário Banco BJ
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este é o README do projeto Banco Comunitário Banco BJ, um sistema de banco comunitário voltado para promover inclusão financeira e desenvolvimento econômico em comunidades carentes.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Sobre o Projeto
 
-## Description
+O Banco Comunitário Banco BJ tem como objetivo principal oferecer serviços financeiros acessíveis e de qualidade para os moradores da comunidade. Através de parcerias com instituições financeiras e programas de microcrédito, buscamos fomentar o empreendedorismo local e fortalecer a economia da região.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Funcionalidades
 
-## Installation
+- Abertura de contas correntes para pessoas físicas e jurídicas
+- Empréstimos e financiamentos com taxas de juros reduzidas
+- Programas de microcrédito para pequenos empreendedores
+- Serviços de pagamento de contas e transferências bancárias
+- Educação financeira e capacitação para a comunidade
 
-```bash
-$ npm install
-```
+## Tecnologias Utilizadas
 
-## Running the app
+- Linguagem de programação: [Typescript](https://www.typescriptlang.org/)
+- Banco de dados: [Postgres](https://www.postgresql.org/)
+- Framework de aplicação: [Nest](https://nestjs.com/)
+- Framework de testes: [Jest](https://jestjs.io/)
+- ORM (Object-Relational Mapping): [TypeORM](https://typeorm.io/)
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
+## Como Contribuir
 
-# production mode
-$ npm run start:prod
-```
+Se você deseja contribuir para o projeto Banco Comunitário Banco BJ, siga as etapas abaixo:
 
-## Test
+1. Faça um fork deste repositório
+2. Crie uma branch com sua feature: `git checkout -b minha-feature`
+3. Faça commit das suas alterações: `git commit -m 'Adicionando nova funcionalidade'`
+4. Faça push para a branch: `git push origin minha-feature`
+5. Abra um pull request neste repositório
 
-```bash
-# unit tests
-$ npm run test
+## Equipe
 
-# e2e tests
-$ npm run test:e2e
+- Lucia - Desenvolvedora Back-end
 
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
