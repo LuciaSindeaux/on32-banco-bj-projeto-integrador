@@ -4,10 +4,11 @@ import {
   Column,
   ManyToOne,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { Cliente } from '../../clientes/entities/cliente.entity';
 import { TipoConta } from '../../enums/tipo-conta-enum';
-import { Transacao } from 'src/dominio/transacoes/entities/transacao.entity';
+import { Transacao } from '../../transacoes/entities/transacao.entity';
 
 
 @Entity()
@@ -15,10 +16,10 @@ export class ContaBancaria {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ type: 'enum', enum: TipoConta, nullable: false })
   tipo: TipoConta;
 
-  @Column()
+  @Column({ type: 'decimal', nullable: false, default: 0 })
   saldo: number;
 
   @Column({ nullable: true })
@@ -28,6 +29,7 @@ export class ContaBancaria {
   taxaJuros: number;
 
   @ManyToOne(() => Cliente, (cliente) => cliente.contas)
+  @JoinColumn({ name: 'cliente_id' })
   cliente: Cliente;
 
   @OneToMany(() => Transacao, (transacao) => transacao.conta)

@@ -1,9 +1,25 @@
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
+import { Expose } from 'class-transformer';
 
 export class CreateContaDto {
+  @IsString()
+  @Expose({ name: 'cliente_id' })
   clienteId: string;
+  
+  @IsNotEmpty()
   tipoConta: TipoConta;
+
+  @IsNotEmpty()
+  @IsNumber()
   saldoInicial: number;
-  limiteChequeEspecial?: number; 
-  taxaJuros?: number; 
+
+  @IsOptional()
+  @IsNumber()
+  limiteChequeEspecial?: number;
+
+  @IsOptional()
+  @IsNumber()
+  taxaJuros?: number;
+
 }

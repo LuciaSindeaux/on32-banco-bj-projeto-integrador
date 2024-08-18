@@ -1,7 +1,14 @@
-import { Cliente } from "src/dominio/clientes/entities/cliente.entity";
+import { IsNotEmpty, IsString } from "class-validator";
+import { Cliente } from "../../dominio/clientes/entities/cliente.entity";
 
 export class UpdateGerenteDto  {
+    @IsString()
+    @IsNotEmpty()
     nomeCompleto: string;
+
+    @IsNotEmpty()
     id: string;
+
+    @IsNotEmpty()
     clientes?: Cliente[];
 }

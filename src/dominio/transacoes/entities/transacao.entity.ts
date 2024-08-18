@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { ContaBancaria } from 'src/dominio/contas/entities/conta.entity';
-import { TipoTransacao } from 'src/dominio/enums/tipo-transacao-enum';
+import { ContaBancaria } from '../../contas/entities/conta.entity';
+import { TipoTransacao } from '../../enums/tipo-transacao-enum';
 
 @Entity()
 export class Transacao {

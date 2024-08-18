@@ -1,7 +1,9 @@
-import { IsNotEmpty, IsString, isNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
 
 export class CreateClienteDto {
+  @IsNotEmpty()
+  id: string;
 
   @IsNotEmpty()
   nomeCompleto: string;
@@ -13,7 +15,9 @@ export class CreateClienteDto {
   telefone: string;
 
   @IsString()
+  @IsNotEmpty()
   gerenteId: string;
 
   tipoConta: TipoConta;
 }
+

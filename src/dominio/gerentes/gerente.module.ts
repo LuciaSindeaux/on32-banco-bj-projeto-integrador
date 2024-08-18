@@ -4,7 +4,7 @@ import { GerenteService } from '../servicos/gerente.service';
 import { Gerente } from './entities/gerente.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ContaBancaria } from '../contas/entities/conta.entity';
-import { GerenteRepository } from 'src/infraestrutura/repositories/gerentes.repository';
+import { GerenteRepository } from '../../infraestrutura/repositories/gerentes.repository';
 import { ContasModule } from '../contas/contas.module';
 
 

@@ -3,44 +3,63 @@ import { Cliente } from '../clientes/entities/cliente.entity';
 import { CreateClienteDto } from '../../adaptadores/dtos/create-cliente.dto';
 import { UpdateClienteDto } from '../../adaptadores/dtos/update-cliente.dto';
 import { ClienteRepository } from '../../infraestrutura/repositories/clientes.repository';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ContaBancaria } from '../contas/entities/conta.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ClienteService {
-    constructor(
-        @Inject('ClienteRepository')
-        private readonly clienteRepository: ClienteRepository,
-    ) {}
+  constructor(
+    private readonly clienteRepository: ClienteRepository,
+    @InjectRepository(ContaBancaria)
+    private readonly contaRepository: Repository<ContaBancaria>,
+  ) {}
 
-    async create(createClienteDto: CreateClienteDto): Promise<Cliente> {
-        const cliente = new Cliente();
-        cliente.nomeCompleto = createClienteDto.nomeCompleto;
-        cliente.endereco = createClienteDto.endereco;
-        cliente.telefone = createClienteDto.telefone;
-        cliente.gerenteId = createClienteDto.gerenteId;
-        cliente.contas = [];
+  async create(createClienteDto: CreateClienteDto): Promise<Cliente> {
+    const cliente = new Cliente();
+    cliente.nomeCompleto = createClienteDto.nomeCompleto;
+    cliente.endereco = createClienteDto.endereco;
+    cliente.telefone = createClienteDto.telefone;
+    cliente.gerenteId = createClienteDto.gerenteId;
 
-        return await this.clienteRepository.save(cliente);
+    const novoCliente = await this.clienteRepository.save(cliente);
+
+    const conta = this.contaRepository.create({
+      tipo: createClienteDto.tipoConta,
+      saldo: 0,
+      cliente: novoCliente,
+    });
+
+    const novaConta = await this.contaRepository.save(conta);
+
+    novoCliente.contas = [novaConta];
+    await this.clienteRepository.save(novoCliente);
+
+    return novoCliente;
+  }
+
+  async findAll(): Promise<Cliente[]> {
+    return await this.clienteRepository.findAllClients();
+  }
+
+  async findOne(id: string): Promise<Cliente> {
+    return await this.clienteRepository.findClientById(id);
+  }
+
+  async update(
+    id: string,
+    updateClienteDto: UpdateClienteDto,
+  ): Promise<Cliente> {
+    const existingCliente = await this.clienteRepository.findClientById(id);
+    if (!existingCliente) {
+      throw new Error('Cliente não encontrado!');
     }
 
-    async findAll(): Promise<Cliente[]> {
-        return await this.clienteRepository.findAllClients();
-    }
+    Object.assign(existingCliente, updateClienteDto);
+    return await this.clienteRepository.save(existingCliente);
+  }
 
-    async findOne(id: string): Promise<Cliente> {
-        return await this.clienteRepository.findClientById(id);
-    }
-
-    async update(id: string, updateClienteDto: UpdateClienteDto): Promise<Cliente> {
-        const existingCliente = await this.clienteRepository.findClientById(id);
-        if (!existingCliente) {
-            throw new Error('Cliente não encontrado!');
-        }
-
-        Object.assign(existingCliente, updateClienteDto);
-        return await this.clienteRepository.save(existingCliente);
-    }
-
-    async remove(id: string): Promise<void> {
-        await this.clienteRepository.deleteClient(id);
-    }
+  async remove(id: string): Promise<void> {
+    await this.clienteRepository.deleteClient(id);
+  }
 }

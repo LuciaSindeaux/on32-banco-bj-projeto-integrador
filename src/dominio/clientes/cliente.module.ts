@@ -4,9 +4,10 @@ import { ClienteService } from '../servicos/cliente.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cliente } from './entities/cliente.entity';
 import { ClienteRepository } from '../../infraestrutura/repositories/clientes.repository';
+import { ContaBancaria } from '../contas/entities/conta.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Cliente])],
+    imports: [TypeOrmModule.forFeature([Cliente, ContaBancaria])],
     controllers: [ClienteController],
     providers: [ClienteService, ClienteRepository],
     exports: [ClienteService, ClienteRepository],

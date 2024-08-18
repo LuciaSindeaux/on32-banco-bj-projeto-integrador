@@ -1,53 +1,57 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import { Gerente } from '../dominio/gerentes/entities/gerente.entity';
-import { Cliente } from '../dominio/clientes/entities/cliente.entity';
-import { GerenteRepository } from '../infraestrutura/repositories/gerentes.repository';
 import { AppModule } from '../app.module';
-import { GerenteModule } from '../dominio/gerentes/gerente.module';
 import { INestApplication } from '@nestjs/common';
-import supertest from 'supertest';
+import * as request from 'supertest';
 
 describe('Casos de testes, gerentes.', () => {
-    let app: INestApplication;
-  
-    beforeAll(async () => {
-      const moduleRef: TestingModule = await Test.createTestingModule({
-        imports: [AppModule],
-      }).compile();
-  
-      app = moduleRef.createNestApplication();
-      await app.init();
-    });
-  
-    afterAll(async () => {
-      await app.close();
-    });
+  let app: INestApplication;
 
-    test('Deve criar um gerente e associar um cliente', async () => {
-        const cliente = {
-            id: 'cliente-uuid',
-            nomeCompleto: 'Cliente Teste'
-        };
-    
-        const gerente = {
-            id: 'gerente-uuid',
-            nomeCompleto: 'Gerente Teste',
-            clientes: [cliente]
-        };
-    
-        const response = await supertest(app.getHttpServer())
-            .post('/gerentes')
-            .send(gerente) 
-            .expect(201);
-    
-        const body = response.body;
-        expect(body).toHaveProperty('id');
-        expect(body.nomeCompleto).toBe(gerente.nomeCompleto);
-        expect(body.clientes).toEqual(expect.arrayContaining([
-            expect.objectContaining({ id: cliente.id })
-        ]));
-    });
-}); 
+  beforeAll(async () => {
+    const moduleRef: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
 
+    app = moduleRef.createNestApplication();
+    await app.init();
+  });
 
+  afterAll(async () => {
+    await app.close();
+  });
+
+  test('Deve criar um gerente e associar um cliente', async () => {
+    const cliente = {
+      id: 'cliente-uuid',
+      nomeCompleto: 'Cliente Teste',
+      endereco: 'Endereço Teste',
+      telefone: 'telefone Teste',
+    };
+
+    const gerente = {
+      id: 'gerente-uuid',
+      nomeCompleto: 'Gerente Teste',
+      clientes: [cliente],
+    };
+
+    const responseGerente = await request(app.getHttpServer())
+      .post('/gerentes')
+      .send(gerente)
+      .expect(201);
+
+    const responseCliente = await request(app.getHttpServer())
+      .post('/clientes')
+      .send(cliente)
+      .expect(201);
+
+    const bodyGerente = responseGerente.body;
+    const bodyCliente = responseCliente.body;
+
+    await request(app.getHttpServer())
+      .post(`/gerentes/${bodyGerente.id}/clientes`)
+      .send({ clienteId: bodyCliente.id })
+      .expect(200);
+
+    expect(bodyGerente.nomeCompleto).toBe(gerente.nomeCompleto);
+    expect(bodyCliente.nomeCompleto).toBe(cliente.nomeCompleto);
+  });
+});
