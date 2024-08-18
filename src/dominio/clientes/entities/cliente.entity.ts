@@ -18,6 +18,9 @@ export class Cliente {
   @Column()
   telefone: string;
 
+  @Column({type: 'decimal', nullable: true})
+  rendaSalarial: number;
+
   @ManyToOne(() => Gerente, (gerente) => gerente.clientes)
   @JoinColumn({ name: 'gerente_id' })
   gerenteId: string;

@@ -16,12 +16,13 @@ beforeAll(async () => {
   await app.init();
 });
 
-test('Deve criar um cliente com sucesso e adicionar um tipo de conta poupança e associar um gerente a ele', async () => {
+test('Deve criar um cliente com sucesso e adicionar um tipo de conta corrente e associar um gerente a ele', async () => {
   const nomeCompleto = 'Lais';
   const endereco = 'Rua paraibuna, 123';
   const telefone = '429858464';
+  const rendaSalarial = 500;
   const gerenteId = uuidv4();
-  const tipoConta: TipoConta = TipoConta.POUPANCA;
+  const tipoConta: TipoConta = TipoConta.CORRENTE;
 
   await supertest(app.getHttpServer())
   .post('/gerentes')
@@ -37,6 +38,7 @@ test('Deve criar um cliente com sucesso e adicionar um tipo de conta poupança e
       nomeCompleto,
       endereco,
       telefone,
+      rendaSalarial,
       gerenteId,
       tipoConta,
     })
@@ -46,6 +48,7 @@ test('Deve criar um cliente com sucesso e adicionar um tipo de conta poupança e
   console.log(body);
   expect(body.nomeCompleto).toBe(nomeCompleto);
   expect(body.endereco).toBe(endereco);
+  expect(body.rendaSalarial).toBe(rendaSalarial);
   expect(body.telefone).toBe(telefone);
   expect(body.gerenteId).toBe(gerenteId);
 

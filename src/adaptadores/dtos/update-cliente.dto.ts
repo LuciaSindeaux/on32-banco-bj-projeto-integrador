@@ -1,5 +1,5 @@
 import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class UpdateClienteDto {
   @IsNotEmpty()
@@ -16,5 +16,10 @@ export class UpdateClienteDto {
   
   @IsString()
   gerenteId?: string;
+  
+  @IsNotEmpty()
+  @IsNumber()
+  rendaSalarial?: number;
+
   tipoConta?: TipoConta;
 }

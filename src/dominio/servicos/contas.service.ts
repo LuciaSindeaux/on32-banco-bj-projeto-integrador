@@ -4,6 +4,7 @@ import { DeepPartial, Repository } from 'typeorm';
 import { ContaBancaria } from '../contas/entities/Conta.entity';
 import { CreateContaDto } from '../../adaptadores/dtos/create-conta.dto';
 import { UpdateContaDto } from '../../adaptadores/dtos/update-conta.dto';
+import { TipoConta } from '../enums/tipo-conta-enum';
 
 @Injectable()
 export class ContasService {
@@ -14,6 +15,9 @@ export class ContasService {
 
   async create(createContaDto: CreateContaDto): Promise<ContaBancaria> {
     const conta = this.contaRepository.create(createContaDto as DeepPartial<ContaBancaria>);
+    if (conta.tipo === TipoConta.CORRENTE && conta.saldo < 500) {
+      throw new Error('Para conta corrente, o saldo inicial deve ser maior ou igual a R$ 500,00');
+    }
     return await this.contaRepository.save(conta);
   }
 

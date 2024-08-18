@@ -6,6 +6,7 @@ import { ClienteRepository } from '../../infraestrutura/repositories/clientes.re
 import { InjectRepository } from '@nestjs/typeorm';
 import { ContaBancaria } from '../contas/entities/conta.entity';
 import { Repository } from 'typeorm';
+import { TipoConta } from '../enums/tipo-conta-enum';
 
 @Injectable()
 export class ClienteService {
@@ -20,6 +21,7 @@ export class ClienteService {
     cliente.nomeCompleto = createClienteDto.nomeCompleto;
     cliente.endereco = createClienteDto.endereco;
     cliente.telefone = createClienteDto.telefone;
+    cliente.rendaSalarial = createClienteDto.rendaSalarial;
     cliente.gerenteId = createClienteDto.gerenteId;
 
     const novoCliente = await this.clienteRepository.save(cliente);
@@ -28,6 +30,7 @@ export class ClienteService {
       tipo: createClienteDto.tipoConta,
       saldo: 0,
       cliente: novoCliente,
+      ...(createClienteDto.tipoConta === TipoConta.CORRENTE && { limiteChequeEspecial: 100 }),
     });
 
     const novaConta = await this.contaRepository.save(conta);
