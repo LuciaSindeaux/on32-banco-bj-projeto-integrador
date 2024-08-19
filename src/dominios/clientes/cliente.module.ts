@@ -3,7 +3,7 @@ import { ClienteController } from '../../adaptadores/controladores/cliente.contr
 import { ClienteService } from '../servicos/cliente.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cliente } from './entities/cliente.entity';
-import { ClienteRepository } from '../../infraestrutura/repositories/clientes.repository';
+import { ClienteRepository } from '../../infraestrutura/repositorios/clientes.repository';
 import { ContaBancaria } from '../contas/entities/conta.entity';
 
 @Module({

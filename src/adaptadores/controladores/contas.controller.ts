@@ -9,10 +9,10 @@ import {
   HttpStatus,
   HttpException,
 } from '@nestjs/common';
-import { ContasService } from '../../dominio/servicos/contas.service';
-import { CreateContaDto } from '../dtos/create-conta.dto';
-import { UpdateContaDto } from '../dtos/update-conta.dto';
-import { TransacaoService } from '../../dominio/servicos/transacao.service';
+import { ContasService } from '../../dominios/servicos/contas.service';
+import { CreateContaDto } from '../../dominios/dtos/create-conta.dto';
+import { UpdateContaDto } from '../../dominios/dtos/update-conta.dto';
+import { TransacaoService } from '../../dominios/servicos/transacao.service';
 
 @Controller('contas')
 export class ContasController {

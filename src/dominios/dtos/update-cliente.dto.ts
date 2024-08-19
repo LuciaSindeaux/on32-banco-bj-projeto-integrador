@@ -1,4 +1,4 @@
-import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
+import { TipoConta } from '../enums/tipo-conta-enum';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class UpdateClienteDto {

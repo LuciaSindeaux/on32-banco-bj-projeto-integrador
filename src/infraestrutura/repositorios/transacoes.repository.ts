@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { Transacao } from 'src/dominio/transacoes/entities/transacao.entity';
+import { Transacao } from 'src/dominios/transacoes/entities/transacao.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 

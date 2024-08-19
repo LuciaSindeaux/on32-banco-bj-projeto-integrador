@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
+import { TipoConta } from '../enums/tipo-conta-enum';
 import { Expose } from 'class-transformer';
 
 export class CreateContaDto {

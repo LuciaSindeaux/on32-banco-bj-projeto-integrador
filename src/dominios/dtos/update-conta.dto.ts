@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateContaDto } from './create-conta.dto';
-import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
+import { TipoConta } from '../enums/tipo-conta-enum';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Expose } from 'class-transformer';
 

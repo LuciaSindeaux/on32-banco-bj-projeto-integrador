@@ -3,10 +3,10 @@ import { Gerente } from '../gerentes/entities/gerente.entity';
 import { Cliente } from '../clientes/entities/cliente.entity';
 import { ContaCorrente } from '../contas/entities/ContaCorrente.entity';
 import { ContaPoupanca } from '../contas/entities/contaPoupanca.entity';
-import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
-import { CreateGerenteDto } from '../../adaptadores/dtos/create-gerente.dto';
-import { GerenteRepository} from '../../infraestrutura/repositories/gerentes.repository';
-import { ContasRepository } from '../../infraestrutura/repositories/contas.repository';
+import { TipoConta } from '../enums/tipo-conta-enum';
+import { CreateGerenteDto } from '../dtos/create-gerente.dto';
+import { GerenteRepository} from '../../infraestrutura/repositorios/gerentes.repository';
+import { ContasRepository } from '../../infraestrutura/repositorios/contas.repository';
 
 
 @Injectable()

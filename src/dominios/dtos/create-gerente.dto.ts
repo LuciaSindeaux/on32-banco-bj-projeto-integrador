@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { Cliente } from '../../dominio/clientes/entities/cliente.entity'; 
+import { Cliente } from '../clientes/entities/cliente.entity'; 
 
 export class CreateGerenteDto {
     @IsString()

@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ClienteModule } from './dominio/clientes/cliente.module';
-import { GerenteModule } from './dominio/gerentes/gerente.module';
-import { ContasModule } from './dominio/contas/contas.module';
+import { ClienteModule } from './dominios/clientes/cliente.module';
+import { GerenteModule } from './dominios/gerentes/gerente.module';
+import { ContasModule } from './dominios/contas/contas.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Cliente } from './dominio/clientes/entities/cliente.entity';
-import { Gerente } from './dominio/gerentes/entities/gerente.entity';
-import { ContaBancaria } from './dominio/contas/entities/conta.entity';
-import { Transacao } from './dominio/transacoes/entities/transacao.entity';
+import { Cliente } from './dominios/clientes/entities/cliente.entity';
+import { Gerente } from './dominios/gerentes/entities/gerente.entity';
+import { ContaBancaria } from './dominios/contas/entities/conta.entity';
+import { Transacao } from './dominios/transacoes/entities/transacao.entity';
 
 require('dotenv').config();
 

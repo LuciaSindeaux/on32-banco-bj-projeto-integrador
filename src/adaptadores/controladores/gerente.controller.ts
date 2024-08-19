@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param, Res, HttpStatus } from '@nestjs/common';
-import { GerenteService } from '../../dominio/servicos/gerente.service';
-import { CreateGerenteDto } from '../dtos/create-gerente.dto';
+import { GerenteService } from '../../dominios/servicos/gerente.service';
+import { CreateGerenteDto } from '../../dominios/dtos/create-gerente.dto';
 import { Response } from 'express';
-import { Cliente } from '../../dominio/clientes/entities/cliente.entity';
-import { TipoConta } from '../../dominio/enums/tipo-conta-enum';
+import { Cliente } from '../../dominios/clientes/entities/cliente.entity';
+import { TipoConta } from '../../dominios/enums/tipo-conta-enum';
 
 @Controller('gerentes')
 export class GerenteController {

@@ -1,8 +1,8 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Cliente } from '../clientes/entities/cliente.entity';
-import { CreateClienteDto } from '../../adaptadores/dtos/create-cliente.dto';
-import { UpdateClienteDto } from '../../adaptadores/dtos/update-cliente.dto';
-import { ClienteRepository } from '../../infraestrutura/repositories/clientes.repository';
+import { CreateClienteDto } from '../dtos/create-cliente.dto';
+import { UpdateClienteDto } from '../dtos/update-cliente.dto';
+import { ClienteRepository } from '../../infraestrutura/repositorios/clientes.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ContaBancaria } from '../contas/entities/conta.entity';
 import { Repository } from 'typeorm';

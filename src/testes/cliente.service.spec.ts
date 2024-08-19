@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../app.module';
 import * as supertest from 'supertest';
-import { TipoConta } from '../dominio/enums/tipo-conta-enum';
+import { TipoConta } from '../dominios/enums/tipo-conta-enum';
 import { v4 as uuidv4 } from 'uuid';
 
 let app: INestApplication;

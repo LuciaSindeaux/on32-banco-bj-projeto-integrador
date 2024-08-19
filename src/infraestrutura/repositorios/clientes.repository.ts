@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { Cliente } from '../../dominio/clientes/entities/cliente.entity';
+import { Cliente } from '../../dominios/clientes/entities/cliente.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 
