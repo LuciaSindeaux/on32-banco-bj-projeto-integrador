@@ -3,4 +3,6 @@ export enum TipoTransacao {
     SAQUE = 'SAQUE',
     TRANSFERENCIA = 'TRANSFERENCIA',
     PAGAMENTO = 'PAGAMENTO',
+    PIX = 'PIX',
+    BOLETO = 'BOLETO',
   }

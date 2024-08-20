@@ -10,8 +10,8 @@ export class Transacao {
   @Column('decimal', { precision: 10, scale: 2 })
   valor: number;
 
-  @Column()
-  tipo: TipoTransacao
+  @Column({ type: 'enum', enum: TipoTransacao, enumName: 'transacao_tipo_enum', nullable: false })
+  tipo: string
 
   @Column({ type: 'timestamp' })
   data: Date;

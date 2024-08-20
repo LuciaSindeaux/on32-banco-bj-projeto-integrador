@@ -1,18 +1,21 @@
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateContaDto } from './create-conta.dto';
+import { TipoConta } from '../../enums/tipo-conta-enum';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-import { TipoConta } from '../enums/tipo-conta-enum';
 import { Expose } from 'class-transformer';
 
-export class CreateContaDto {
+export class UpdateContaDto extends PartialType(CreateContaDto) {
+
   @IsString()
   @Expose({ name: 'cliente_id' })
   clienteId: string;
   
   @IsNotEmpty()
-  tipoConta: TipoConta;
+  tipoConta: string;
 
   @IsNotEmpty()
   @IsNumber()
-  saldoInicial: number;
+  saldo: number;
 
   @IsOptional()
   @IsNumber()
@@ -21,5 +24,4 @@ export class CreateContaDto {
   @IsOptional()
   @IsNumber()
   taxaJuros?: number;
-
 }

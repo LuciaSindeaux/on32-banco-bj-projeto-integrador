@@ -1,7 +1,7 @@
 
 import { Controller, Get, Post, Body, Delete, Param } from '@nestjs/common';
 import { ClienteService } from '../../dominios/servicos/cliente.service';
-import { CreateClienteDto } from '../../dominios/dtos/create-cliente.dto';
+import { CreateClienteDto } from '../../dominios/clientes/dto/create-cliente.dto';
 import { Cliente } from '../../dominios/clientes/entities/cliente.entity';
 
 @Controller('clientes')

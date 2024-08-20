@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param, Res, HttpStatus } from '@nestjs/common';
 import { GerenteService } from '../../dominios/servicos/gerente.service';
-import { CreateGerenteDto } from '../../dominios/dtos/create-gerente.dto';
+import { CreateGerenteDto } from '../../dominios/gerentes/dto/create-gerente.dto';
 import { Response } from 'express';
 import { Cliente } from '../../dominios/clientes/entities/cliente.entity';
 import { TipoConta } from '../../dominios/enums/tipo-conta-enum';
@@ -109,11 +109,11 @@ export class GerenteController {
   @Post(':clienteId/abrir-conta')
   async abrirConta(
     @Param('clienteId') clienteId: string,
-    @Body() { tipoConta, saldoInicial }: { tipoConta: TipoConta, saldoInicial: number },
+    @Body() { tipoConta, saldo }: { tipoConta: TipoConta, saldo: number },
     @Res() res: Response,
   ) {
     try {
-      await this.gerenteService.abrirConta(clienteId, tipoConta, saldoInicial);
+      await this.gerenteService.abrirConta(clienteId, tipoConta, saldo);
       res.status(HttpStatus.CREATED).json({ message: 'Conta criada com sucesso' });
     } catch (error) {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({

@@ -16,8 +16,8 @@ export class ContaBancaria {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'enum', enum: TipoConta, nullable: false })
-  tipo: TipoConta;
+  @Column({ type: 'enum', enum: TipoConta, enumName: 'conta_bancaria_tipo_enum', nullable: false })
+  tipo: string;
 
   @Column({ type: 'decimal', nullable: false, default: 0 })
   saldo: number;
@@ -35,3 +35,4 @@ export class ContaBancaria {
   @OneToMany(() => Transacao, (transacao) => transacao.conta)
   transacoes: Transacao[];
 }
+

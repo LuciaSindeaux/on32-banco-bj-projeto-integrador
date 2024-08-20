@@ -22,7 +22,7 @@ test('Deve criar um cliente com sucesso e adicionar um tipo de conta corrente e 
   const telefone = '429858464';
   const rendaSalarial = 500;
   const gerenteId = uuidv4();
-  const tipoConta: TipoConta = TipoConta.CORRENTE;
+  const tipoConta: 'CORRENTE' = TipoConta.CORRENTE;
 
   await supertest(app.getHttpServer())
   .post('/gerentes')
@@ -71,3 +71,5 @@ test('Deve criar um cliente com sucesso e adicionar um tipo de conta corrente e 
     expect(Array.isArray(body)).toBe(true);
     expect(body.length).toBeGreaterThan(0);
   });
+
+  

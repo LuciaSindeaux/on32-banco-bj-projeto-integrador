@@ -4,7 +4,7 @@ import { Cliente } from '../clientes/entities/cliente.entity';
 import { ContaCorrente } from '../contas/entities/ContaCorrente.entity';
 import { ContaPoupanca } from '../contas/entities/contaPoupanca.entity';
 import { TipoConta } from '../enums/tipo-conta-enum';
-import { CreateGerenteDto } from '../dtos/create-gerente.dto';
+import { CreateGerenteDto } from '../gerentes/dto/create-gerente.dto';
 import { GerenteRepository} from '../../infraestrutura/repositorios/gerentes.repository';
 import { ContasRepository } from '../../infraestrutura/repositorios/contas.repository';
 
@@ -61,7 +61,7 @@ export class GerenteService {
   async abrirConta(
     clienteId: string,
     tipoConta: TipoConta,
-    saldoInicial: number,
+    saldo: number,
   ): Promise<void> {
     const gerente = this.gerenteRepository.findOne(clienteId);
     if (!gerente) {
@@ -84,7 +84,7 @@ export class GerenteService {
       conta.taxaJuros = 0.05;
     }
 
-    conta.saldo = saldoInicial;
+    conta.saldo = saldo;
     cliente.contas.push(conta);
   }
 

@@ -10,8 +10,8 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { ContasService } from '../../dominios/servicos/contas.service';
-import { CreateContaDto } from '../../dominios/dtos/create-conta.dto';
-import { UpdateContaDto } from '../../dominios/dtos/update-conta.dto';
+import { CreateContaDto } from '../../dominios/contas/dto/create-conta.dto';
+import { UpdateContaDto } from '../../dominios/contas/dto/update-conta.dto';
 import { TransacaoService } from '../../dominios/servicos/transacao.service';
 
 @Controller('contas')
